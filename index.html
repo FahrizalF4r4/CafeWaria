@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Waria - Kopi & Kuliner Modern</title>
+    <meta name="description" content="Cafe Waria - Nikmati kopi spesial dan kuliner modern dalam suasana hangat dan ramah. Pesan online sekarang!">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #FF7B00;
+            --black: #121212;
+            --dark-gray: #1a1a1a;
+            --light-gray: #CCCCCC;
+            --brown: #3E2723;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #2a2a2a;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--orange);
+        }
+
+        .btn {
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #e66d00;
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 123, 0, 0.4);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--orange);
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.6)),
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1920') center/cover;
+            text-align: center;
+            padding: 100px 20px 50px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 123, 0, 0.5);
+        }
+
+        .hero-content .highlight {
+            color: var(--orange);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--light-gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--orange);
+            color: var(--orange);
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Featured Menu */
+        .featured-bg {
+            background-color: var(--dark-gray);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #252525;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 123, 0, 0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-image-container {
+            overflow: hidden;
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .icon-box {
+            background: rgba(255, 123, 0, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .card-content p {
+            color: var(--light-gray);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background-color: var(--dark-gray);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 123, 0, 0.2);
+        }
+
+        .stars {
+            color: var(--orange);
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            color: var(--light-gray);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--white);
+            font-style: normal;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(255, 123, 0, 0.2), rgba(62, 39, 35, 0.2));
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            border-top: 1px solid #333;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--orange);
+        }
+
+        .footer-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            background-color: #252525;
+            padding: 12px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(18, 18, 18, 0.98);
+                padding: 20px;
+                border-bottom: 1px solid #2a2a2a;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Icon SVG styles */
+        .icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                    <line x1="6" y1="1" x2="6" y2="4"></line>
+                    <line x1="10" y1="1" x2="10" y2="4"></line>
+                    <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+                WARIA
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Beranda</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+                <li><a href="#kontak" class="btn">Pesan Sekarang</a></li>
+            </ul>
+            
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Selamat Datang di <span class="highlight">Cafe Waria</span></h1>
+            <p>Nikmati kopi premium dan kuliner modern dalam suasana yang hangat dan ramah</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn">Lihat Menu →</a>
+                <a href="#kontak" class="btn btn-outline">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Menu Section -->
+    <section class="featured-bg" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Menu <span class="highlight">Unggulan</span></h2>
+                <p>Pilihan terbaik dari dapur Cafe Waria, dibuat dengan bahan berkualitas dan cinta</p>
+            </div>
+
+            <div class="featured-grid">
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800" alt="Kopi Signature" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="icon-box">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                </svg>
+                            </div>
+                            <h3>Kopi Signature</h3>
+                        </div>
+                        <p>Racikan kopi spesial dari biji pilihan terbaik dengan cita rasa unik Cafe Waria.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800" alt="Pastry & Dessert" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="icon-box">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                            </div>
+                            <h3>Pastry & Dessert</h3>
+                        </div>
+                        <p>Kue dan dessert fresh setiap hari, sempurna menemani kopi Anda.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800" alt="Snack Waria" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="icon-box">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <h3>Snack Waria</h3>
+                        </div>
+                        <p>Makanan ringan dengan sentuhan modern dan cita rasa yang tak terlupakan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#menu" class="btn">Lihat Semua Menu →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="tentang">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kata <span class="highlight">Pelanggan</span></h2>
+                <p>Kepuasan pelanggan adalah prioritas kami</p>
+            </div>
+
+            <div class="featured-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Kopi terbaik yang pernah saya coba! Suasana cafe sangat nyaman dan pelayanan ramah."</p>
+                    <p class="author">- Budi Santoso</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Menu makanannya enak-enak, harga terjangkau. Jadi tempat favorit buat nongkrong!"</p>
+                    <p class="author">- Sarah Wijaya</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Tempat yang pas buat meeting atau kerja sambil ngopi. WiFi kencang dan tempatnya cozy."</p>
+                    <p class="author">- Andi Prasetyo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="featured-bg" id="galeri">
+        <div class="container">
+            <div class="section-header">
+                <h2>Galeri <span class="highlight">Kami</span></h2>
+                <p>Intip suasana hangat dan menu lezat kami</p>
+            </div>
+
+            <div class="featured-grid">
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800" alt="Interior Cafe" class="card-image">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800" alt="Latte Art" class="card-image">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800" alt="Suasana Cafe" class="card-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="cta-section">
+        <div class="container">
+            <h2>Siap Untuk Merasakan <span class="highlight">Pengalaman Terbaik?</span></h2>
+            <p style="margin: 20px auto 40px; max-width: 700px; color: var(--light-gray); font-size: 1.2rem;">
+                Kunjungi kami hari ini atau pesan secara online untuk pengalaman yang lebih mudah
+            </p>
+            <a href="#kontak" class="btn">Pesan Sekarang →</a>
+        </div>
+    </section>
+
+   
+    <section id="kontak">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hubungi <span class="highlight">Kami</span></h2>
+                <p>Kami siap melayani pertanyaan dan kebutuhan Anda</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div class="testimonial-card">
+                    <h3 style="margin-bottom: 15px;">📍 Alamat</h3>
+                    <p>Jl. PawiroKuat No 23<br>Daerah Istimewa Yogyakarta</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <h3 style="margin-bottom: 15px;">📞 Telepon</h3>
+                    <p>+62 857-4376-6808</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <h3 style="margin-bottom: 15px;">✉️ Email</h3>
+                    <p>cafewaria@gmail.com</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <h3 style="margin-bottom: 15px;">🕐 Jam Buka</h3>
+                    <p>Senin - Jumat: 08.00 - 22.00<br>Sabtu - Minggu: 09.00 - 23.00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <svg class="icon" style="color: var(--orange);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        </svg>
+                        <span style="font-size: 24px; font-weight: 700; color: var(--orange);">WARIA</span>
+                    </div>
+                    <p style="color: var(--light-gray); font-size: 0.9rem;">
+                        Nikmati kopi spesial dan kuliner modern dalam suasana hangat dan ramah.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#galeri">Galeri</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <div class="footer-info">📍 Jl. PawiroKuat 23</div>
+                    <div class="footer-info">📞 +62 857-4376-6808</div>
+                    <div class="footer-info">✉️ cafewaria@gmail.com</div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Jam Buka</h3>
+                    <div class="footer-info">Senin - Jumat: 08.00 - 22.00</div>
+                    <div class="footer-info">Sabtu - Minggu: 09.00 - 23.00</div>
+                    
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram">📷</a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook">👍</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cafe Waria. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+   
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinksAll = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinksAll.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links (fallback for older browsers)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initially hide cards for animation
+        const cards = document.querySelectorAll('.card, .testimonial-card');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Console welcome message
+        console.log('%c🎨 Cafe Waria', 'font-size: 24px; font-weight: bold; color: #FF7B00;');
+        console.log('%cWelcome to our website! ☕', 'font-size: 14px; color: #CCCCCC;');
+    </script>
+</body>
+</html>
